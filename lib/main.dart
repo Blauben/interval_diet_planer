@@ -26,6 +26,10 @@ class MyApp extends StatelessWidget {
             elevation: 15,
             titleTextStyle: TextStyle(color: Colors.white, fontSize: 30)),
       ),
+      builder: (context, child) =>
+          MediaQuery(data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+              child: child ?? Container()
+          ),
       home: const MyHomePage(),
     );
   }
@@ -85,7 +89,7 @@ class AppState extends ChangeNotifier {
 
   TimeOfDay stringToTimeOfDay(String timeString) {
     List<String> tuple = timeString.split(";");
-    return TimeOfDay(hour: tuple.first as int, minute: tuple.last as int);
+    return TimeOfDay(hour: int.parse(tuple.first), minute: int.parse(tuple.last));
   }
 
   void loadAcc() async {

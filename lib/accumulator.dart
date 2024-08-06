@@ -48,8 +48,8 @@ class AlarmWidget extends StatelessWidget {
       ElevatedButton(
         onPressed: () async => appState.setDelta(await showTimePicker(
                 context: context,
-                initialTime: const TimeOfDay(hour: 12, minute: 0)) ??
-            const TimeOfDay(hour: 12, minute: 0)),
+                initialTime: const TimeOfDay(hour: 12, minute: 0),
+        ) ?? const TimeOfDay(hour: 12, minute: 0)),
         child: const Text(style: TextStyle(fontSize: 20), "Ändern"),
       )
     ];
@@ -68,7 +68,7 @@ class AlarmWidget extends StatelessWidget {
               const TextSpan(text: "Nächste Mahlzeit ab "),
               TextSpan(
                   text:
-                      "${(appState.time.hour + appState.delta.hour % 24).toString().padLeft(2, "0")}:${(appState.time.minute + appState.delta.minute % 60).toString().padLeft(2, "0")}",
+                      "${(((appState.time.hour + appState.delta.hour + (appState.time.minute + appState.delta.minute) / 60).floor()) % 24).toString().padLeft(2, "0")}:${((appState.time.minute + appState.delta.minute) % 60).toString().padLeft(2, "0")}",
                   style: const TextStyle(fontWeight: FontWeight.bold)),
               const TextSpan(text: " Uhr planen!"),
             ],
