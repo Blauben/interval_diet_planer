@@ -81,7 +81,7 @@ class AlarmWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           vertical: 0.05 * MediaQuery.of(context).size.height,
           horizontal: 0.05 * MediaQuery.of(context).size.width),
-      child: Column(
+      child: SingleChildScrollView(child: Column(
         children: [
           highCard,
           SizedBox(height: 0.05 * MediaQuery.of(context).size.height),
@@ -89,6 +89,7 @@ class AlarmWidget extends StatelessWidget {
           SizedBox(height: 0.05 * MediaQuery.of(context).size.height),
           lowCard,
         ],
+      ),
       ),
     );
   }

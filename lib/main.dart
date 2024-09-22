@@ -66,10 +66,27 @@ class MyHomePageState extends State<MyHomePage> with RestorationMixin {
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Intervall Fasten"),
-          leading: const Icon(Icons.timer),
+          leading: Builder(builder: (context) {
+            return IconButton(icon: const Icon(Icons.menu),
+                onPressed: Scaffold.of(context).openDrawer);
+          },),
           toolbarHeight: 80,
         ),
-        body: const AlarmWidget(),
+          drawer: Drawer(child: ListView(
+            children: const [
+              DrawerHeader(child: Center(child: Text("Menü", style: TextStyle(fontSize: 24)))),
+              AboutListTile(aboutBoxChildren: [Text("""
+
+Copyright 2024 Ben Frauenknecht
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+""",)],),
+          ],),),
+        body: const Center(child: AlarmWidget()),
       ),
     );
   }
